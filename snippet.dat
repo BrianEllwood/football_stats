@@ -1,0 +1,59 @@
+<div aria-hidden="true" class="sp-c-lineup-pitch__wrapper sp-c-lineup-pitch__alignment--home sp-c-lineup__formation--4231" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2">
+                  <div class="sp-c-lineup-pitch__content" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0">
+                   <div class="sp-c-lineup-pitch" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0">
+                    <div class="sp-c-lineup-pitch__row sp-c-lineup-pitch__row--has-1 sp-c-lineup-pitch__row--0 qa-pitch-lineup-row-0" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.$home-formation-row-0">
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.$home-formation-row-0.$home-player-0">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.$home-formation-row-0.$home-player-0.0">
+                       1
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.$home-formation-row-0.$home-player-0.1">
+                       Schmeichel
+                      </span>
+                     </span>
+                    </div>
+                    <div class="sp-c-lineup-pitch__row sp-c-lineup-pitch__row--has-4 sp-c-lineup-pitch__row--1 qa-pitch-lineup-row-1" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1">
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-0">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-0.0">
+                       27
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-0.1">
+                       Castagne
+                      </span>
+                     </span>
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-1">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-1.0">
+                       3
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-1.1">
+                       Fofana
+                      </span>
+                     </span>
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-2">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-2.0">
+                       6
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-2.1">
+                       Evans
+                      </span>
+                     </span>
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-3">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-3.0">
+                       2
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-1.$home-player-3.1">
+                       Justin
+                      </span>
+                     </span>
+                    </div>
+                    <div class="sp-c-lineup-pitch__row sp-c-lineup-pitch__row--has-2 sp-c-lineup-pitch__row--2 qa-pitch-lineup-row-2" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2">
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2.$home-player-0">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2.$home-player-0.0">
+                       8
+                      </span>
+                      <span class="sp-c-lineup-pitch__player__name gs-u-display-block@xs" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2.$home-player-0.1">
+                       Tielemans
+                      </span>
+                     </span>
+                     <span class="sp-c-lineup-pitch__player" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2.$home-player-1">
+                      <span class="sp-c-lineup-pitch__player__number" data-reactid=".vypeimg2i2.0.0.0.1.$include-47.0.0.1:$panel-0.$0.0.0.0.2.0.0.1:$home-formation-row-2.$home-player-1.0">
+                       24
