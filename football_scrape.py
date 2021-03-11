@@ -98,8 +98,9 @@ for link in stat_soup3.find_all('abbr'):
     #link1 = link.text.strip()
     #print(link)
     cnt_1 += 1
-print('+++Need to get unused subs from here>---------------------------------')
+print('home,away---------------------------------')
 print(home,away)
+print('player_list---------------------------------')
 print(player_list)
 print('---------------------------------')
 
@@ -137,14 +138,15 @@ acnt_4 = 0
 acnt_player_list = 0
 aplayer_sub = []
 
+
 for strt_player in player_list:
     if home_team[0].split(";")[1] in  player_list[cnt_3]:
         hcnt_player_list = cnt_3
-        print(player_list[cnt_3])
+        #print(player_list[cnt_3])
         #cnt_4 +=1
         while hcnt_4 < 11:
             if home_team[hcnt_4].split(";")[1] in  player_list[hcnt_player_list]:
-                print(home_team[hcnt_4]," ; - ")
+                #print(home_team[hcnt_4]," ; - ")
                 pl_sub = home_team[hcnt_4]+" ; - "
                 hplayer_sub.append(pl_sub)
                 hcnt_4 +=1
@@ -158,10 +160,10 @@ for strt_player in player_list:
                 hcnt_player_list +=1
     if away_team[0].split(";")[1] in  player_list[cnt_3]:
         acnt_player_list = cnt_3
-        print(player_list[cnt_3])
+        #print(player_list[cnt_3])
         while acnt_4 < 11:
             if away_team[acnt_4].split(";")[1] in  player_list[acnt_player_list]:
-                print(away_team[acnt_4]," ; - ")
+                #print(away_team[acnt_4]," ; - ")
                 pl_sub = away_team[acnt_4]+" ; - "
                 aplayer_sub.append(pl_sub)
                 acnt_4 +=1
@@ -175,8 +177,9 @@ for strt_player in player_list:
                 acnt_player_list +=1                
     #print(cnt_3)
     cnt_3 +=1
+print('hplayer_sub---------------------------------')
 print(hplayer_sub)
-print('---------------------------------')
+print('aplayer_sub---------------------------------')
 print(aplayer_sub)
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
@@ -199,10 +202,7 @@ cnt_4 = 0
 home_squad = []
 
 while cnt_4 < ply_cnt:
-    #print(home_team[cnt_4].split(";")[1]," -- ",player_list[cnt_4])
     if home_team[0].split(";")[1] in  player_list[cnt_4]:
-        #print(home_team[0].split(";")[1],player_list[cnt_4])
-        #print('1---------------------------------')
         cnt_5 = 0
         cnt_6 = 0
         while away_team[0].split(";")[1] not in  player_list[cnt_4]:
@@ -210,30 +210,35 @@ while cnt_4 < ply_cnt:
                 #print(cnt_4,cnt_5,cnt_6,"<<<<<<<<<<<<<<<<<<<<",player_list[cnt_4].split(" ")[-1])
                 #print("hello",cnt_4,cnt_5,player_list[cnt_4].split(" ")[-1])
                 #home_squad.append(player_list[cnt_4].split(" ")[-1])
-                splayer = squad_num[cnt_6]+" ; "+(player_list[cnt_4].split(" ")[-1])
+                #splayer = squad_num[cnt_6]+" ; "+(player_list[cnt_4].split(" ")[-1])
+                splayer = (player_list[cnt_4].split(" ")[-1])+" ; "
                 home_squad.append(splayer)
             if cnt_5 < 11:
                 if home_team[cnt_5].split(";")[1] in  player_list[cnt_4]:
                     #home_squad.append(player_list[cnt_4].split(" ")[-1])
                     #print(cnt_4,cnt_5,cnt_6,"||<<<<<<<<<<<<<<<<<<<<||",player_list[cnt_4].split(" ")[-1])
                     #print(cnt_4,cnt_5,player_list[cnt_4].split(" ")[-1])
-                    splayer = squad_num[cnt_6]+" ; "+(player_list[cnt_4].split(" ")[-1])
+                    #splayer = squad_num[cnt_6]+" ; "+(player_list[cnt_4].split(" ")[-1])
+                    splayer = (player_list[cnt_4].split(" ")[-1])+" ; "
                     #splayer = squad_no[cnt_6]
                     home_squad.append(splayer)
                     cnt_5 +=1
             cnt_6 +=1
             #print(cnt_6,"<------>",home_squad)
             cnt_4 +=1
+        print('home_squad---------------------------------')
         print(home_squad)    
     cnt_4 +=1
-    
-#cnt_7 = 0
-#print("/////////////")
-#for fred in squad_num:
-    #print(cnt_7," | ",squad_num[cnt_7])
-    #cnt_7 +=1
 
-print(squad_num)
+home_squad_no = [] 
+cnt_7 = 0
+
+for hplayer in home_squad:
+    hplayer_sq = squad_num[cnt_7]+" ; "+home_squad[cnt_7]
+    home_squad_no.append(hplayer_sq)
+    cnt_7 +=1
+print('home_squad_no---------------------------------')
+print(home_squad_no)
 
 
 
