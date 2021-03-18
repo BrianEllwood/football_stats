@@ -143,10 +143,6 @@ def get_player_sub():
                     aplayer_sub[prev_cnt] = new_dets
                     acnt_player_list +=1                
         cnt_3 +=1
-    # print('hplayer_sub---------------------------------')
-    # print(hplayer_sub)
-    # print('aplayer_sub---------------------------------')
-    # print(aplayer_sub)
     return hplayer_sub, aplayer_sub
 
 #  gets the score for home and away
@@ -191,6 +187,19 @@ def get_home_squad_no():
     #print('home_squad_no---------------------------------')
     #print(home_squad_no)
     return home_squad_no
+
+def get_subd_squad():
+    cnt_8 = 0
+    for ply1 in hplayer_sub:
+        if '|' in hplayer_sub[cnt_8]:
+            hplayer_sub2 = hplayer_sub[cnt_8].split("|")[1]
+            indices = [i for i, s in enumerate(home_squad_no) if hplayer_sub2.split(" ")[2] in s]
+            subd = hplayer_sub[cnt_8].split("|")[0]
+            sub = home_squad_no[indices[0]]
+            hplayer_sub[cnt_8] = subd+"| "+sub     
+        cnt_8 +=1  
+    return ()
+
 #=======================
 squad_num = []
 squad_num = get_squad_num()
@@ -214,14 +223,21 @@ print('---------------------------------score')
 
 home_squad = []
 home_squad = get_home_squad()
-print('home_squad---------------------------------')
-print(home_squad)  
+#print('home_squad---------------------------------')
+#print(home_squad)  
 
 home_squad_no = [] 
 home_squad_no = get_home_squad_no()
-print('home_squad_no---------------------------------')
-print(home_squad_no)
+#print('home_squad_no---------------------------------')
+#print(home_squad_no)
+
+get_subd_squad()
+print('Home team---------------------------------')
+print(hplayer_sub)
 #=======================
+
+
+
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
