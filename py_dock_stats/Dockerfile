@@ -14,4 +14,6 @@ RUN pip install -r requirements.txt
 COPY src/ .
 
 # command to run on container start
+#CMD [ "python", "./doc_football_scrape.py", "./page_dets.dat" ]
+
 CMD [ "python", "./doc_football_scrape.py", "./page_dets.dat" ]
