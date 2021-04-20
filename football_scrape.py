@@ -200,6 +200,11 @@ def get_subd_squad():
         cnt_8 +=1  
     return ()
 
+def get_fixture_date():
+    for gdate in stat_soup3.find_all('time',{"sp-c-fixture__date gel-minion"}):
+        fix_date = gdate.text.strip()
+    return fix_date
+
 #=======================
 squad_num = []
 squad_num = get_squad_num()
@@ -216,8 +221,11 @@ hplayer_sub = []
 aplayer_sub = []
 hplayer_sub,aplayer_sub = get_player_sub()
 
+fix_date1 = get_fixture_date()
+
 home_score, away_score = get_score()
 print('---------------------------------score')
+print(fix_date1)
 print(home,home_score,away,away_score)
 print('---------------------------------score')
 

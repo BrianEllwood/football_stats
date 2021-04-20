@@ -235,8 +235,11 @@ get_subd_squad()
 print('Home team---------------------------------')
 print(hplayer_sub)
 #=======================
-
-
+print("test1")
+for gdate in stat_soup3.find_all('time class',{"sp-c-fixture__date gel-minion"}):
+    gdate1 = gdate.text.strip()
+    print(gdate)
+    print("test2")
 
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
