@@ -244,8 +244,13 @@ print('Home team---------------------------------')
 print(hplayer_sub)
 #=======================
 
+# odd picks up time of first goal but not scorer but does get second and third
+for bob in stat_soup3.find_all('ul',{"sp-c-fixture__scorers-away"}):
+    fbob = bob.text.strip()
+    print(fbob)
 
 
+#<ul class='sp-c-fixture__player-action sp-c-fixture__scorers sp-c-fixture__scorers-away gel-brevier gel-1/2"'
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
