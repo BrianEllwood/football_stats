@@ -205,6 +205,38 @@ def get_fixture_date():
         fix_date = gdate.text.strip()
     return fix_date
 
+def get_away_scorers():
+    scrs = ""
+    for aw_scr in stat_soup3.find_all('ul',{"sp-c-fixture__scorers-away"}):
+        bert = ""
+        for aw_scr1 in aw_scr.find_all('span'):
+            #aw_scr1 = aw_scr.find('span')
+            aw_scr2 = aw_scr1.text.strip()
+            aw_scr2 = aw_scr2.replace('\n','')
+            aw_scr2 = aw_scr2.replace(' ','')
+            bert = bert+aw_scr2
+            #print(bert)
+            #print("---")
+
+    #print(bert)
+    count = bert.count(",")
+    #print(count)
+
+    cnt_scrs = count+1
+    #print(cnt_scrs)
+    cnt = 1
+    #score = ""
+    while cnt <= cnt_scrs:
+        score = bert.split(",")[cnt-1]
+        score = score.split("'")[0]
+        score = score.replace('(',' ')
+        #print(score)
+        scrs=scrs+" "+score
+        cnt +=1
+    return(scrs)
+
+
+
 #=======================
 squad_num = []
 squad_num = get_squad_num()
@@ -242,15 +274,12 @@ home_squad_no = get_home_squad_no()
 get_subd_squad()
 print('Home team---------------------------------')
 print(hplayer_sub)
+
+if int(away_score) > 0:
+    awayscorer = get_away_scorers()
+print(awayscorer)
 #=======================
 
-# odd picks up time of first goal but not scorer but does get second and third
-for bob in stat_soup3.find_all('ul',{"sp-c-fixture__scorers-away"}):
-    fbob = bob.text.strip()
-    print(fbob)
-
-
-#<ul class='sp-c-fixture__player-action sp-c-fixture__scorers sp-c-fixture__scorers-away gel-brevier gel-1/2"'
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
