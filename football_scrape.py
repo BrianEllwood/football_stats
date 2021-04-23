@@ -208,18 +208,18 @@ def get_fixture_date():
 def get_away_scorers():
     scrs = ""
     for aw_scr in stat_soup3.find_all('ul',{"sp-c-fixture__scorers-away"}):
-        bert = ""
+        all_aw_scr = ""
         for aw_scr1 in aw_scr.find_all('span'):
             #aw_scr1 = aw_scr.find('span')
             aw_scr2 = aw_scr1.text.strip()
             aw_scr2 = aw_scr2.replace('\n','')
             aw_scr2 = aw_scr2.replace(' ','')
-            bert = bert+aw_scr2
-            #print(bert)
+            all_aw_scr = all_aw_scr+aw_scr2
+            #print(all_aw_scr)
             #print("---")
 
-    #print(bert)
-    count = bert.count(",")
+    #print(all_aw_scr)
+    count = all_aw_scr.count(",")
     #print(count)
 
     cnt_scrs = count+1
@@ -227,7 +227,7 @@ def get_away_scorers():
     cnt = 1
     #score = ""
     while cnt <= cnt_scrs:
-        score = bert.split(",")[cnt-1]
+        score = all_aw_scr.split(",")[cnt-1]
         score = score.split("'")[0]
         score = score.replace('(',' ')
         #print(score)
