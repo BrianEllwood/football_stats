@@ -178,6 +178,29 @@ def get_home_squad():
         cnt_4 +=1
     return home_squad
 
+def get_away_squad():
+    ply_cnt = len(player_list)
+    cnt_4 = 0
+    while cnt_4 < ply_cnt:
+        if away_team[0].split(";")[1] in  player_list[cnt_4]:
+            cnt_5 = 0
+            cnt_6 = 0
+            cnt_7 = cnt_4
+            while cnt_7 < ply_cnt:
+                if cnt_5 >= 11:
+                    splayer = (player_list[cnt_4].split(" ")[-1])+" ; "
+                    away_squad.append(splayer)
+                if cnt_5 < 11:
+                    if away_team[cnt_5].split(";")[1] in  player_list[cnt_4]:
+                        splayer = (player_list[cnt_4].split(" ")[-1])+" ; "
+                        away_squad.append(splayer)
+                        cnt_5 +=1
+                cnt_6 +=1
+                cnt_4 +=1 
+                cnt_7 +=1
+        cnt_4 +=1
+    return away_squad
+
 def get_home_squad_no():
     cnt_7 = 0
     for hplayer in home_squad:
@@ -188,7 +211,17 @@ def get_home_squad_no():
     #print(home_squad_no)
     return home_squad_no
 
-def get_subd_squad():
+def get_away_squad_no():
+    cnt_7 = 0
+    for aplayer in away_squad:
+        aplayer_sq = squad_num[cnt_7]+" ; "+away_squad[cnt_7]
+        away_squad_no.append(aplayer_sq)
+        cnt_7 +=1
+    #print('home_squad_no---------------------------------')
+    #print(home_squad_no)
+    return away_squad_no
+
+def get_subd_hsquad():
     cnt_8 = 0
     for ply1 in hplayer_sub:
         if '|' in hplayer_sub[cnt_8]:
@@ -197,6 +230,18 @@ def get_subd_squad():
             subd = hplayer_sub[cnt_8].split("|")[0]
             sub = home_squad_no[indices[0]]
             hplayer_sub[cnt_8] = subd+"| "+sub     
+        cnt_8 +=1  
+    return ()
+
+def get_subd_asquad():
+    cnt_8 = 0
+    for ply1 in aplayer_sub:
+        if '|' in aplayer_sub[cnt_8]:
+            aplayer_sub2 = aplayer_sub[cnt_8].split("|")[1]
+            indices = [i for i, s in enumerate(away_squad_no) if aplayer_sub2.split(" ")[2] in s]
+            subd = aplayer_sub[cnt_8].split("|")[0]
+            sub = away_squad_no[indices[0]]
+            aplayer_sub[cnt_8] = subd+"| "+sub     
         cnt_8 +=1  
     return ()
 
@@ -218,7 +263,6 @@ def get_away_scorers():
             #print(all_aw_scr)
             #print("---")
 
-    #print(all_aw_scr)
     count = all_aw_scr.count(",")
     #print(count)
 
@@ -235,14 +279,46 @@ def get_away_scorers():
         cnt +=1
     return(scrs)
 
+def get_home_scorers():
+    scrs = ""
+    for hm_scr in stat_soup3.find_all('ul',{"sp-c-fixture__scorers-home"}):
+        all_hm_scr = ""
+        for hm_scr1 in hm_scr.find_all('span'):
+            #hm_scr1 = hm_scr.find('span')
+            hm_scr2 = hm_scr1.text.strip()
+            hm_scr2 = hm_scr2.replace('\n','')
+            hm_scr2 = hm_scr2.replace(' ','')
+            all_hm_scr = all_hm_scr+hm_scr2
+            #print(all_hm_scr)
+            #print("---")
 
+    #print(all_hm_scr)
+    count = all_hm_scr.count(",")
+    #print(count)
+
+    cnt_scrs = count+1
+    #print(cnt_scrs)
+    cnt = 1
+    #score = ""
+    while cnt <= cnt_scrs:
+        score = all_hm_scr.split(",")[cnt-1]
+        score = score.split("'")[0]
+        score = score.replace('(',' ')
+        #print(score)
+        scrs=scrs+" "+score
+        cnt +=1
+    return(scrs)
 
 #=======================
+
+#=======================
+
 squad_num = []
 squad_num = get_squad_num()
 
 player_list = []
 player_list, home, away = get_player_list()
+
 
 home_team = []
 away_team = []
@@ -271,15 +347,38 @@ home_squad_no = get_home_squad_no()
 #print('home_squad_no---------------------------------')
 #print(home_squad_no)
 
-get_subd_squad()
+get_subd_hsquad()
 print('Home team---------------------------------')
 print(hplayer_sub)
+
+away_squad = []
+away_squad = get_away_squad()
+#print('away_squad---------------------------------')
+#print(away_squad)  
+
+away_squad_no = [] 
+away_squad_no = get_away_squad_no()
+#print('away_squad_no---------------------------------')
+#print(away_squad_no)
+
+get_subd_asquad()
+print('Away team---------------------------------')
+print(aplayer_sub)
+
+if int(home_score) > 0:
+    homescorer = get_home_scorers()
+print(homescorer)
 
 if int(away_score) > 0:
     awayscorer = get_away_scorers()
 print(awayscorer)
 #=======================
 
+outfile='/Users/brianellwood/football_stats/out_file.txt'
+outf = open(outfile,'w')
+fred=str(aplayer_sub)
+outf.write (fred)
+outf.close()
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
