@@ -374,11 +374,21 @@ if int(away_score) > 0:
 print(awayscorer)
 #=======================
 
-outfile='/Users/brianellwood/football_stats/out_file.txt'
-outf = open(outfile,'w')
-fred=str(aplayer_sub)
-outf.write (fred)
-outf.close()
+# need to start builing an output line 
+# alwats Leeds details first 
+
+out_line = fix_date1+" "+" A "+away+" "+away_score+" "+home+" "+home_score
+out_line = out_line+" "+str(aplayer_sub)+" "+str(hplayer_sub)
+out_line = out_line.replace('[','')
+out_line = out_line.replace(']','')
+out_line = out_line.replace("'",'')
+print(out_line)
+
+#outfile='/Users/brianellwood/football_stats/out_file.txt'
+#outf = open(outfile,'w')
+#fred=str(aplayer_sub)
+#outf.write (fred)
+#outf.close()
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
