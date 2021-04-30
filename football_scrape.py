@@ -132,14 +132,23 @@ def get_player_sub():
             acnt_player_list = cnt_3
             while acnt_4 < 11:
                 if away_team[acnt_4].split(";")[1] in  player_list[acnt_player_list]:
-                    pl_sub = away_team[acnt_4]+" ; - "
+                    if away_team[acnt_4].split(";")[1] in awayscorer:
+                        goals = "1"
+                    else:
+                        goals = "0"
+                    pl_sub = away_team[acnt_4]+" "+goals+" ; - " # this must be it
                     aplayer_sub.append(pl_sub)
                     acnt_4 +=1
                     acnt_player_list +=1   
                 # what if 11th player subbed ?    
-                if acnt_4 < 11 and away_team[acnt_4].split(";")[1] not in  player_list[acnt_player_list]:  
+                if acnt_4 < 11 and away_team[acnt_4].split(";")[1] not in  player_list[acnt_player_list]: 
                     prev_cnt = (acnt_4 - 1)
-                    new_dets = away_team[prev_cnt]+" ; | "+player_list[acnt_player_list]
+                    #new_dets = away_team[prev_cnt]+" ; |?? "+player_list[acnt_player_list]+" ??"
+                    if player_list[acnt_player_list].split(" ")[1] in awayscorer:
+                        goals = "1"
+                    else:
+                        goals = "0"
+                    new_dets = pl_sub+" ; | "+player_list[acnt_player_list]+" "+goals
                     aplayer_sub[prev_cnt] = new_dets
                     acnt_player_list +=1                
         cnt_3 +=1
@@ -214,7 +223,8 @@ def get_home_squad_no():
 def get_away_squad_no():
     cnt_7 = 0
     for aplayer in away_squad:
-        aplayer_sq = squad_num[cnt_7]+" ; "+away_squad[cnt_7]
+        goals = "0" # work on seting goal scores 
+        aplayer_sq = squad_num[cnt_7]+" ; "+away_squad[cnt_7]+" "+goals
         away_squad_no.append(aplayer_sq)
         cnt_7 +=1
     #print('home_squad_no---------------------------------')
@@ -313,29 +323,42 @@ def get_home_scorers():
 
 #=======================
 
+fix_date1 = get_fixture_date()
+
+home_score, away_score = get_score()
+#print('---------------------------------score')
+#print(fix_date1)
+#print(home,home_score,away,away_score)
+#print('---------------------------------score')
+
+if int(home_score) > 0:
+    homescorer = get_home_scorers()
+#print(homescorer)
+
+if int(away_score) > 0:
+    awayscorer = get_away_scorers()
+#print(awayscorer)
+
 squad_num = []
 squad_num = get_squad_num()
 
 player_list = []
 player_list, home, away = get_player_list()
-
+#print('player_list---------------------------------')
+#print(player_list)
 
 home_team = []
 away_team = []
 
 home_team, away_team = get_teams()
 
+# so gets a list of player surnames and full names for subs as below
+# 10;Alioski ; - ', '23;Phillips ; - ', '18;Raphinha ; | Hélder Costa',
 hplayer_sub = []
 aplayer_sub = []
 hplayer_sub,aplayer_sub = get_player_sub()
-
-fix_date1 = get_fixture_date()
-
-home_score, away_score = get_score()
-print('---------------------------------score')
-print(fix_date1)
-print(home,home_score,away,away_score)
-print('---------------------------------score')
+#print('aplayer_sub---------------------------------')
+#print(aplayer_sub)
 
 home_squad = []
 home_squad = get_home_squad()
@@ -348,8 +371,8 @@ home_squad_no = get_home_squad_no()
 #print(home_squad_no)
 
 get_subd_hsquad()
-print('Home team---------------------------------')
-print(hplayer_sub)
+#print('Home team---------------------------------')
+#print(hplayer_sub)
 
 away_squad = []
 away_squad = get_away_squad()
@@ -360,35 +383,31 @@ away_squad_no = []
 away_squad_no = get_away_squad_no()
 #print('away_squad_no---------------------------------')
 #print(away_squad_no)
+#print('away_squad_no---------------------------------')
 
+# final step gets srarting 11 plus subs
 get_subd_asquad()
 print('Away team---------------------------------')
 print(aplayer_sub)
+print("looks like goals will have to be done in two parts starting 11 and subs not elegant but will work")
 
-if int(home_score) > 0:
-    homescorer = get_home_scorers()
-print(homescorer)
-
-if int(away_score) > 0:
-    awayscorer = get_away_scorers()
-print(awayscorer)
 #=======================
 
 # need to start builing an output line 
-# alwats Leeds details first 
+# always Leeds details first 
 
-out_line = fix_date1+" "+" A "+away+" "+away_score+" "+home+" "+home_score
-out_line = out_line+" "+str(aplayer_sub)+" "+str(hplayer_sub)
-out_line = out_line.replace('[','')
-out_line = out_line.replace(']','')
-out_line = out_line.replace("'",'')
-print(out_line)
+if away == "Leeds United":
+    out_line = fix_date1+";"+" A;"+away+";"+away_score+";"+"("+awayscorer+");"+home+";"+home_score+";"+"("+homescorer+");"
+    out_line = out_line+" "+str(aplayer_sub)+";||;"+str(hplayer_sub)
+    out_line = out_line.replace('[','')
+    out_line = out_line.replace(']','')
+    out_line = out_line.replace("'",'')
+    #print(out_line)
 
-#outfile='/Users/brianellwood/football_stats/out_file.txt'
-#outf = open(outfile,'w')
-#fred=str(aplayer_sub)
-#outf.write (fred)
-#outf.close()
+outfile='/Users/brianellwood/football_stats/out_file.txt'
+outf = open(outfile,'w')
+outf.write (out_line)
+outf.close()
 
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">

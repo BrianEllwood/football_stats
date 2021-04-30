@@ -11,9 +11,10 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy the content of the local src directory to the working directory
-COPY src/ .
+#COPY src/ .
 
 # command to run on container start
 #CMD [ "python", "./doc_football_scrape.py", "./page_dets.dat" ]
 
-CMD [ "python", "./doc_football_scrape.py", "./page_dets.dat" ]
+#CMD [ "python", "./doc_football_scrape.py", "./page_dets.dat" ]
+CMD [ "python", "src/doc_football_scrape.py"]

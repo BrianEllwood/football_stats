@@ -47,7 +47,7 @@ import requests
 
 
 # using file instead of url until worked how what to scrape
-rawfile3 = open('page_dets.dat', 'r')
+rawfile3 = open('src/page_dets.dat', 'r')
 # rawfile3 = open('/Users/brianellwood/football_stats/snippet.dat', 'r')
 
 stat_soup3 = BeautifulSoup(rawfile3, 'html.parser')
