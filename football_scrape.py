@@ -57,7 +57,7 @@ rawfile3.close()
 # stat_soup3.find_all('span',{"sp-c-lineup-pitch__player__name gs-u-display-block@xs"}):  - just starting 11 h/a
 # stat_soup3.find_all('span',{"sp-c-lineup-pitch__player"}): - this gives number and player starting 11 h/a
 # stat_soup3.find_all('span',{"gel-pica-bold sp-c-team-lineups__number"}): - gives squad numbers
-# stat_soup3.find_all('span',{"gs-u-vh"}): - bookinkins subs but not the name or number
+# stat_soup3.find_all('span',{"gs-u-vh"}): - bookings, subs but not the name or number
 # 
 # 
 home = "-"
@@ -118,7 +118,11 @@ def get_player_sub():
             hcnt_player_list = cnt_3
             while hcnt_4 < 11:
                 if home_team[hcnt_4].split(";")[1] in  player_list[hcnt_player_list]:
-                    pl_sub = home_team[hcnt_4]+" ; - "
+                    if home_team[hcnt_4].split(";")[1] in homescorer:
+                        goals = ",1"
+                    else:
+                        goals = ",0"
+                    pl_sub = home_team[hcnt_4]+" "+goals+" ; - "
                     hplayer_sub.append(pl_sub)
                     hcnt_4 +=1
                     hcnt_player_list +=1   
@@ -133,9 +137,9 @@ def get_player_sub():
             while acnt_4 < 11:
                 if away_team[acnt_4].split(";")[1] in  player_list[acnt_player_list]:
                     if away_team[acnt_4].split(";")[1] in awayscorer:
-                        goals = "1"
+                        goals = ",1"
                     else:
-                        goals = "0"
+                        goals = ",0"
                     pl_sub = away_team[acnt_4]+" "+goals+" ; - " # this must be it
                     aplayer_sub.append(pl_sub)
                     acnt_4 +=1
@@ -143,12 +147,12 @@ def get_player_sub():
                 # what if 11th player subbed ?    
                 if acnt_4 < 11 and away_team[acnt_4].split(";")[1] not in  player_list[acnt_player_list]: 
                     prev_cnt = (acnt_4 - 1)
-                    #new_dets = away_team[prev_cnt]+" ; |?? "+player_list[acnt_player_list]+" ??"
                     if player_list[acnt_player_list].split(" ")[1] in awayscorer:
-                        goals = "1"
+                        goals = ",1"
                     else:
-                        goals = "0"
+                        goals = ",0"
                     new_dets = pl_sub+" ; | "+player_list[acnt_player_list]+" "+goals
+                    new_dets = new_dets.replace("; -","")
                     aplayer_sub[prev_cnt] = new_dets
                     acnt_player_list +=1                
         cnt_3 +=1
@@ -213,7 +217,8 @@ def get_away_squad():
 def get_home_squad_no():
     cnt_7 = 0
     for hplayer in home_squad:
-        hplayer_sq = squad_num[cnt_7]+" ; "+home_squad[cnt_7]
+        goals = "0"
+        hplayer_sq = squad_num[cnt_7]+" ; "+home_squad[cnt_7]+" "+goals
         home_squad_no.append(hplayer_sq)
         cnt_7 +=1
     #print('home_squad_no---------------------------------')
@@ -221,12 +226,15 @@ def get_home_squad_no():
     return home_squad_no
 
 def get_away_squad_no():
-    cnt_7 = 0
+    cnt_7 = 20
+    cnt_8 = 0
     for aplayer in away_squad:
         goals = "0" # work on seting goal scores 
-        aplayer_sq = squad_num[cnt_7]+" ; "+away_squad[cnt_7]+" "+goals
+        #print("squad_num---",squad_num)
+        aplayer_sq = squad_num[cnt_7]+" ; "+away_squad[cnt_8]+" "+goals
         away_squad_no.append(aplayer_sq)
         cnt_7 +=1
+        cnt_8 +=1
     #print('home_squad_no---------------------------------')
     #print(home_squad_no)
     return away_squad_no
@@ -239,7 +247,7 @@ def get_subd_hsquad():
             indices = [i for i, s in enumerate(home_squad_no) if hplayer_sub2.split(" ")[2] in s]
             subd = hplayer_sub[cnt_8].split("|")[0]
             sub = home_squad_no[indices[0]]
-            hplayer_sub[cnt_8] = subd+"| "+sub     
+            hplayer_sub[cnt_8] = subd.replace(" ","")+"|,"+sub.replace(" ","")+",0,-,0"     
         cnt_8 +=1  
     return ()
 
@@ -251,7 +259,7 @@ def get_subd_asquad():
             indices = [i for i, s in enumerate(away_squad_no) if aplayer_sub2.split(" ")[2] in s]
             subd = aplayer_sub[cnt_8].split("|")[0]
             sub = away_squad_no[indices[0]]
-            aplayer_sub[cnt_8] = subd+"| "+sub     
+            aplayer_sub[cnt_8] = subd.replace(" ","")+"|,"+sub.replace(" ","")+",0,-,0"  
         cnt_8 +=1  
     return ()
 
@@ -371,8 +379,8 @@ home_squad_no = get_home_squad_no()
 #print(home_squad_no)
 
 get_subd_hsquad()
-#print('Home team---------------------------------')
-#print(hplayer_sub)
+print('Home team---------------------------------')
+print(hplayer_sub)
 
 away_squad = []
 away_squad = get_away_squad()
@@ -389,20 +397,35 @@ away_squad_no = get_away_squad_no()
 get_subd_asquad()
 print('Away team---------------------------------')
 print(aplayer_sub)
-print("looks like goals will have to be done in two parts starting 11 and subs not elegant but will work")
 
 #=======================
 
-# need to start builing an output line 
+# need to start builing an output line to insert into db
 # always Leeds details first 
 
 if away == "Leeds United":
-    out_line = fix_date1+";"+" A;"+away+";"+away_score+";"+"("+awayscorer+");"+home+";"+home_score+";"+"("+homescorer+");"
-    out_line = out_line+" "+str(aplayer_sub)+";||;"+str(hplayer_sub)
+    gday = fix_date1.split(" ")[0]
+    gdate1 = fix_date1.split(" ")[1]
+    gdate2 = fix_date1.split(" ")[2]
+    gdate3 = fix_date1.split(" ")[3]
+    gdate = gdate1+"-"+gdate2+"-"+gdate3
+    out_line = ",A,"+away+","+away_score+","+home+","+home_score+","
+    out_line = out_line+" "+(str(aplayer_sub)).replace(' ','')+'"'
+    out_line = out_line+" ,'"+(str(hplayer_sub)).replace(' ','')+'"'
     out_line = out_line.replace('[','')
     out_line = out_line.replace(']','')
     out_line = out_line.replace("'",'')
-    #print(out_line)
+    out_line = out_line.replace(";-",",0,-,0,0,-,0")
+    out_line = out_line.replace(";",',')
+    out_line = out_line.replace(",|",'')
+    out_line = out_line.replace(",",'","')
+    out_line = out_line.replace('" ",','",')
+    out_line = '"'+gday+'"'+",STR_TO_DATE('"+gdate+"','%d-%M-%Y')"+out_line
+    out_line = out_line.replace(')"',')')
+    print("")
+    print("")
+    print("<===================================>")
+    print(out_line)
 
 outfile='/Users/brianellwood/football_stats/out_file.txt'
 outf = open(outfile,'w')

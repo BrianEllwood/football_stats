@@ -245,6 +245,43 @@ for gdate in stat_soup3.find_all('time class',{"sp-c-fixture__date gel-minion"})
 #<span class="sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.0.1.0">
 #<span class="sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft" data-reactid=".1k16cwn7e.0.0.1.0.2.1.0">
 
+# test of msql connector
+
+import mysql.connector
+from mysql.connector import errorcode
+
+
+try:
+    cnx = mysql.connector.connect(user='root',password='mypassword',host='172.17.0.2',port='3306',database='test_db',sql_mode='traditional',auth_plugin='mysql_native_password') 
+except mysql.connector.Error as err:
+    if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+        print("Something is wrong with your user name or password")
+    elif err.errno == errorcode.ER_BAD_DB_ERROR:
+        print("Database does not exist")
+    else:
+        print(err)
+else:
+    print("hello")
+    cnx.close()
+
+cnx = mysql.connector.connect(user='root',password='mypassword',host='172.17.0.2',port='3306',database='test_db',sql_mode='traditional',auth_plugin='mysql_native_password')
+
+curA = cnx.cursor(buffered=True)
+
+result_array = []
+
+query = ("SELECT "
+        "*"
+        " FROM test_db.matchday ; "
+)
+
+curA.execute(query)
+
+for (cname) in curA:
+    print(cname)
+
+cnx.close()
+
 
 
 
