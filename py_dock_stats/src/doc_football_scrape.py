@@ -5,6 +5,13 @@ from bs4 import BeautifulSoup
 
 import requests
 
+# picks up username and password recorded in ENV file
+import os
+username = os.environ['DB_USERNAME']
+
+epassword = os.environ['SOME_PWD_VAR']
+
+
 # https://www.bbc.co.uk/sport/football/teams/leeds-united/scores-fixtures
 # http_scores_fixtures  = "https://www.bbc.co.uk/sport/football/teams/leeds-united/scores-fixtures" 
 # http_scores_fixtures  = "https://www.bbc.co.uk/sport/football/teams/leeds-united/scores-fixtures/2021-01" 
@@ -252,7 +259,7 @@ from mysql.connector import errorcode
 
 
 try:
-    cnx = mysql.connector.connect(user='root',password='mypassword',host='172.17.0.2',port='3306',database='test_db',sql_mode='traditional',auth_plugin='mysql_native_password') 
+    cnx = mysql.connector.connect(user=username,password=epassword,host='172.17.0.2',port='3306',database='stats_db',sql_mode='traditional',auth_plugin='mysql_native_password') 
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -264,7 +271,7 @@ else:
     print("hello")
     cnx.close()
 
-cnx = mysql.connector.connect(user='root',password='mypassword',host='172.17.0.2',port='3306',database='test_db',sql_mode='traditional',auth_plugin='mysql_native_password')
+cnx = mysql.connector.connect(user=username,password=epassword,host='172.17.0.2',port='3306',database='stats_db',sql_mode='traditional',auth_plugin='mysql_native_password')
 
 curA = cnx.cursor(buffered=True)
 
@@ -272,7 +279,7 @@ result_array = []
 
 query = ("SELECT "
         "*"
-        " FROM test_db.matchday ; "
+        " FROM stats_db.matchday ; "
 )
 
 curA.execute(query)

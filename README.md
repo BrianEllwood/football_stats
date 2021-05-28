@@ -33,7 +33,8 @@ Instalation
 		docker build -t pyfootstats2 .
 	
 Usage 
-	docker run docker run --rm   pyfootstats2
+	
+	docker run --rm --env-file ${PWD}/.env -v ${PWD}/src/:/code/src/  pyfootstats3
 
 For further information see the Documentation (none as yet)
 
