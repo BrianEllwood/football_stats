@@ -25,12 +25,12 @@ You will need the following software and this is how to install them
 	Docker
 		https://docs.docker.com/docker-for-mac/install/
 
-Instalation
+Installation 
 
 	1. clone the repo
 		git@github.com:BrianEllwood/football_stats.git
 	2. Build the docker image
-		docker build -t pyfootstats2 .
+		docker build -t pyfootstats3 .
 	
 Usage 
 	
