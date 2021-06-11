@@ -27,7 +27,7 @@ server = Flask(__name__)
 conn = None
 
 @server.route('/')
-def listBlog():
+def listMatchday():
     
     global conn
     if not conn:
