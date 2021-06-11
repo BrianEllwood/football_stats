@@ -1,3 +1,4 @@
 .DS_Store
 .env
 mysql-datadir
+password.txt
