@@ -41,7 +41,7 @@ def listBlog():
         c=c.replace(')','')
         c=c.replace("'",'')
         c=c.replace("datetime.date",'')
-        response = response  + '<div>   ' + c + '</div>'
+        response = response  + '<div>   <font size="-1">' + c + '</font> </div>'
     return response
 
 

@@ -41,7 +41,7 @@ def listBlog():
     response = ''
     for c in rec:
         c=str(c)
-        response = response  + '<div>   ' +c + '</div>'
+        response = response  + '<div>   <font size="+2">' +c + '</font> </div>'
     return response
 
 
