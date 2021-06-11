@@ -28,7 +28,7 @@ conn = None
 
 @server.route('/')
 def listBlog():
-    print("test1 -----------------------------------")
+    
     global conn
     if not conn:
         conn = DBManager(password_file='/run/secrets/db-password')
@@ -37,6 +37,10 @@ def listBlog():
     response = ''
     for c in rec:
         c=str(c)
+        c=c.replace("(",'')
+        c=c.replace(')','')
+        c=c.replace("'",'')
+        c=c.replace("datetime.date",'')
         response = response  + '<div>   ' + c + '</div>'
     return response
 
