@@ -3,9 +3,9 @@ from flask import Flask
 import mysql.connector
 
 class DBManager:
-    def __init__(self, database='footstat2', host='localhost', user="root", password_file=None):
+    def __init__(cnx, database='footstat2', host='localhost', user="root", password_file=None):
         #pf = open(password_file, 'r')
-        self.connection = mysql.connector.connect(
+        cnx.connection = mysql.connector.connect(
             user=user, 
             password='ten2ten-zz',
             host=host, # name of the mysql service as set in the docker-compose file
@@ -14,23 +14,19 @@ class DBManager:
             auth_plugin='mysql_native_password'
         )
         #pf.close()
-        self.cursor = self.connection.cursor(buffered=True)
-
-    def populate_db(self):
-        self.cursor.execute('DROP TABLE IF EXISTS blog')
-        self.cursor.execute('CREATE TABLE blog (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255))')
-        self.cursor.executemany('INSERT INTO blog (id, title) VALUES (%s, %s);', [(i, 'Bog postzz #%d'% i) for i in range (1,6)])
-        self.connection.commit()
+        cnx.cursor = cnx.connection.cursor(buffered=True)
     
-    def query_matchday(self):
-        self.cursor.execute('select * from matchday;')
+    def query_matchday(cnx):
+        print("test2 -----------------------------------")
+        cnx.cursor.execute('select * from matchday;')
+        print("test3 -----------------------------------")
         rec = []
-        for c in self.cursor:
+        for c in cnx.cursor:
             rec.append(c)
         return rec
 
 
-server = Flask(__name__)
+#server = Flask(__name__)
 conn = None
 
 #@server.route('/')
@@ -45,7 +41,7 @@ def listBlog():
     response = ''
     for c in rec:
         c=str(c)
-        response = response  + '<div>   ' + bert + '</div>'
+        response = response  + '<div>   ' +c + '</div>'
     return response
 
 
@@ -53,4 +49,4 @@ if __name__ == '__main__':
     fred=listBlog()
     print("fred---",fred)
 
-self.close()
+
