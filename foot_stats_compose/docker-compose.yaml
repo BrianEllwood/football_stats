@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:8.0.19
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    secrets:
+      - db-password
+    volumes:
+      - "./db/mysql-datadir:/var/lib/mysql:rw"
+      - "./db/conf.d:/etc/mysql/conf.d"
+    networks:
+      - backnet
+    environment:
+      - MYSQL_DATABASE=footstat2
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - 6603:3306
+    expose:
+      - 3306
+      - 33060
+  backend:
+    build: backend
+    restart: always
+    secrets:
+      - db-password
+    ports:
+      - 5000:5000
+    networks:
+      - backnet
+      - frontnet
+    depends_on:
+      db:
+        condition: service_healthy
+  proxy:
+    build: proxy
+    restart: always
+    ports:
+      - 80:80
+    depends_on: 
+      - backend
+    networks:
+      - frontnet
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: db/password.txt
+networks:
+  backnet:
+  frontnet:
