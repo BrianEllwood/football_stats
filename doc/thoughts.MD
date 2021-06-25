@@ -34,3 +34,16 @@ script against.
  rf = open(rawfile,'w')
  rf.write (stat_soup.prettify())
  rf.close()
+
+ 6 Actions
+
+ seed database
+
+ expand scrape
+
+ account for home games 
+
+ re organise scrape code a total mess
+
+ include scrape in compose 
+

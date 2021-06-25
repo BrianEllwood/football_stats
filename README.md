@@ -11,6 +11,10 @@ Built With
 
 	Docker
 
+	Mysql
+
+	Nginx
+
 Getting Started
 
 Below are what is needed to get this project started
@@ -34,7 +38,11 @@ Installation
 	
 Usage 
 	
-	docker run --rm --env-file ${PWD}/.env -v ${PWD}/src/:/code/src/  pyfootstats3
+	#  docker run --rm --env-file ${PWD}/.env -v ${PWD}/src/:/code/src/  pyfootstats3
+
+	cd foot_stats_compose
+	
+	docker compose up --build -d 
 
 For further information see the Documentation (none as yet)
 
