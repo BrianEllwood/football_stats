@@ -1,6 +1,3 @@
-/sport/football/teams/leeds-united/scores-fixtures/2020-06
-/sport/football/teams/leeds-united/scores-fixtures/2020-07
-/sport/football/teams/leeds-united/scores-fixtures/2020-08
 /sport/football/teams/leeds-united/scores-fixtures/2020-09
 /sport/football/teams/leeds-united/scores-fixtures/2020-10
 /sport/football/teams/leeds-united/scores-fixtures/2020-11
@@ -10,16 +7,3 @@
 /sport/football/teams/leeds-united/scores-fixtures/2021-03
 /sport/football/teams/leeds-united/scores-fixtures/2021-04
 /sport/football/teams/leeds-united/scores-fixtures/2021-05
-/sport/football/teams/leeds-united/scores-fixtures/2021-06
-/sport/football/teams/leeds-united/scores-fixtures/2021-07
-/sport/football/teams/leeds-united/scores-fixtures/2021-08
-/sport/football/teams/leeds-united/scores-fixtures/2021-09
-/sport/football/teams/leeds-united/scores-fixtures/2021-10
-/sport/football/teams/leeds-united/scores-fixtures/2021-11
-/sport/football/teams/leeds-united/scores-fixtures/2021-12
-/sport/football/teams/leeds-united/scores-fixtures/2022-01
-/sport/football/teams/leeds-united/scores-fixtures/2022-02
-/sport/football/teams/leeds-united/scores-fixtures/2022-03
-/sport/football/teams/leeds-united/scores-fixtures/2022-04
-/sport/football/teams/leeds-united/scores-fixtures/2022-05
-/sport/football/teams/leeds-united/scores-fixtures/2022-06
