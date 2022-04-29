@@ -1,7 +1,4 @@
 .DS_Store
 .env
-.terraform
-/Users/brianellwood/football_stats/build_eks_cluster/.terraform
-/Users/brianellwood/football_stats/learn-terraform-deploy-nginx-kubernetes/.terraform
 mysql-datadir
 password.txt
