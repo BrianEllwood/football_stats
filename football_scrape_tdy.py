@@ -18,6 +18,7 @@ def get_team_pages():
 
 def check_fixture_list(stat_soup):
     # checks for the list of fixtures if not there populates it
+    # how populated in first place ?
     if os.path.isfile('/Users/brianellwood/football_stats/fixtures_month.txt') != True:
         fixture_month = open('/Users/brianellwood/football_stats/fixtures_month.txt', 'w')
         for link in stat_soup.find_all('a'):
@@ -30,6 +31,8 @@ def check_fixture_list(stat_soup):
 def populate_fixture_list():
     # takes the fixture_month and get each game url for that month
     # Sep 2020 start of prem league ends may 2021
+    fred = get_team_pages()
+    check_fixture_list(fred)
     fixture_month_check = open('/Users/brianellwood/football_stats/fixtures_month.txt', 'r')
     fixture_number = open('/Users/brianellwood/football_stats/fixtures_number.txt', 'w')
     for line in fixture_month_check:
@@ -278,9 +281,9 @@ ignore_list = ('Average','Half Time','Played','Won','Chelsea', 'Burnley', 'Full 
 'Drawn', 'Lost', 'Goals for', 'Goals against', 'Goal difference', 'Points', 'Manchester City', 'Manchester United', 
 'Liverpool', 'Leicester City', 'West Ham United', 'Tottenham Hotspur', 'Chelsea', 'Everton', 'Aston Villa', 'Arsenal', 
 'Southampton', 'Leeds United', 'Crystal Palace', 'Wolverhampton Wanderers', 'Newcastle United', 
-'Burnley', 'Brighton & Hove Albion', 'Fulham', 'West Bromwich Albion', 'Sheffield United')
+'Burnley', 'Brighton & Hove Albion', 'Fulham', 'West Bromwich Albion', 'Sheffield United','Watford','Brentford','Norwich')
 
-#populate_fixture_list() # need to only run as needed
+populate_fixture_list() # need to only run as needed
 fixture_list=[]
 get_fixture(fixture_list)
 
