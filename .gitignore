@@ -6,6 +6,7 @@
 mysql-datadir
 password.txt
 *.bck
+out_file*
 
 # Local .terraform directories
 **/.terraform/*

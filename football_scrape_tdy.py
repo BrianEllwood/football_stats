@@ -291,9 +291,10 @@ outfile='/Users/brianellwood/football_stats/out_file_new1.txt'
 outf = open(outfile,'w')
 
 for link in fixture_list:
+    # needs re working not a very good way to do it
     #if '56234684' in link:
     #if '57132105' in link:
-    if '5' in link:
+    if '5' or '6' in link:
         home = "-"
         away = "-"
         stat_soup3=get_fixture_soup(link)
