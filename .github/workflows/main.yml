@@ -12,6 +12,9 @@ on:
         options:
         - dev
         - prod
+      tags:
+        description: "something clever"
+        type: boolean
 
 jobs:
     hello:
