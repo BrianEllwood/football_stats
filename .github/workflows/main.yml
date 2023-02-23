@@ -4,8 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: "Who to greet"
-        default: "World"
+        description: "Deploy to prod ?"
+        required: true
+        default: "No"
+      environment:
+        type: choice
+        options:
+        - dev
+        - prod
 
 jobs:
     hello:
