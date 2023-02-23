@@ -13,4 +13,6 @@ jobs:
 
         steps:
         - name: Hello Step
-          run: echo "Hello ${{ github.event.inputs.name }} this branch is ${{ GITHUB_REF##*/ }}"
+          run: echo "Hello ${{ github.event.inputs.name }} "
+        - name: Branch name
+          run: echo running on branch ${GITHUB_REF##*/}
